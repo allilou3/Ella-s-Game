@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ella's Game</title>
+    <style>
+        body {
+            background-color: #2e8b57; /* Vert forêt */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            color: white;
+        }
+
+        h1 {
+            color: lightyellow;
+        }
+
+        #message {
+            font-size: 1.5em;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        input, button {
+            padding: 10px;
+            font-size: 1em;
+            margin: 10px;
+        }
+
+        button {
+            background-color: lightblue;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #76c7c0;
+        }
+
+        #yesNoButtons {
+            display: none;
+        }
+
+        .yellow {
+            color: #FFFF00; /* Jaune poussin */
+        }
+
+        .pink {
+            color: #FF69B4; /* Rose */
+            font-size: 2em;
+        }
+
+        .red {
+            color: #FF0000; /* Rouge */
+            font-size: 3em;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Ella's Game</h1>
+
+    <label for="numberInput">Tape un nombre entre 1 et 10 :</label>
+    <input type="number" id="numberInput" min="1" max="10" required>
+    <button onclick="jouer()">Valider</button>
+
+    <div id="yesNoButtons">
+        <p>Would you marry me ?</p>
+        <button onclick="reponseOui()">Yes</button>
+        <button onclick="reponseNon()">No</button>
+    </div>
+
+    <p id="message"></p>
+
+    <script>
+        function jouer() {
+            const nombre = document.getElementById("numberInput").value;
+            const message = document.getElementById("message");
+            const yesNoButtons = document.getElementById("yesNoButtons");
+
+            // Cacher la question Oui/Non et réinitialiser le message
+            yesNoButtons.style.display = "none";
+            message.textContent = "";
+
+            if (nombre >= 1 && nombre <= 4 || nombre >= 6 && nombre <= 9) {
+                message.textContent = "Wrong number looser !!";
+                message.classList.add("yellow");
+            } else if (nombre == 5) {
+                message.textContent = "I love you and miss you so much";
+                message.classList.add("yellow");
+            } else if (nombre == 10) {
+                // Afficher la question Oui/Non uniquement pour le nombre 10
+                yesNoButtons.style.display = "block";
+            } else {
+                message.textContent = "Oops ! Le nombre n'est pas entre 1 et 10.";
+            }
+        }
+
+        function reponseOui() {
+            const message = document.getElementById("message");
+            message.textContent = "OMG OMG OMG OMG OMG OMG OMG YEAHHHHHHHHH";
+            message.classList.add("pink");
+            document.getElementById("numberInput").value = ''; // Réinitialiser l'input
+            document.getElementById("yesNoButtons").style.display = "none"; // Masquer les boutons Oui/Non
+        }
+
+        function reponseNon() {
+            const message = document.getElementById("message");
+            message.textContent = "Fuck you !!!!!!!!!!!";
+            message.classList.add("red");
+            document.getElementById("numberInput").value = ''; // Réinitialiser l'input
+            document.getElementById("yesNoButtons").style.display = "none"; // Masquer les boutons Oui/Non
+        }
+    </script>
+
+</body>
+</html>
